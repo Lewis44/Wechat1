@@ -72,7 +72,8 @@ public class Server {
 
 				while (socket.isConnected()) {
 					System.out.println(Thread.currentThread());
-					Message inputMessage  = (Message) objectInputStream.readObject();
+					Message inputMessage = (Message) new ObjectInputStream(socket.getInputStream()).readObject();
+					//Message inputMessage  = (Message) objectInputStream.readObject();
 					if (inputMessage != null) {
 						String type = inputMessage.getMessageType();
 						System.out.println("send:" + inputMessage.getSendId() + "to:" + inputMessage.getToId());
